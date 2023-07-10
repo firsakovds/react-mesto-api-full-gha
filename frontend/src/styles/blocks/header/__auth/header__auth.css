@@ -1,0 +1,6 @@
+.header__auth {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 24px;
+  text-decoration: none;
+}

@@ -1,0 +1,12 @@
+.auth__input-email {
+  margin: 0 auto;
+  padding: 0;
+  width: 358px;
+height: 14px;
+border: none;
+margin-top: 50px;
+color: #CCCCCC;
+background: #000000;
+border-bottom: 2px solid #CCCCCC;
+padding-bottom: 13px;
+}

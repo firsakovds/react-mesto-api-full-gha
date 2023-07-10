@@ -1,0 +1,4 @@
+.element__like-counter {
+  grid-column-end: 3;
+  margin: auto;
+}

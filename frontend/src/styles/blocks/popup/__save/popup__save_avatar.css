@@ -1,0 +1,32 @@
+.popup__save-avatar {
+  font-family: "Inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  padding-top: 14px;
+  padding-bottom: 18px;
+  margin: 0;
+  border: none;
+  margin-top: 39px;
+  margin-bottom: 32px;
+  max-width: 358px;
+  max-height: 50px;
+  background: #000000;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.popup__save-avatar:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+@media (max-width: 905px) {
+  .popup__save-avatar {
+    max-width: 238px;
+    max-height: 46px;
+    margin-bottom: 25px;
+    margin-top: 45px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

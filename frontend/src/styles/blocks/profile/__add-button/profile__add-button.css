@@ -1,0 +1,36 @@
+.profile__add-button {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  margin-left: 244px;
+  align-self: center;
+  background-image: url(../../../../images/profile__add-button.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+}
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+@media (max-width: 905px) {
+  .profile__add-button {
+    max-width: 282px;
+    margin-left: 0;
+    margin-top: 33px;
+    width: 100%;
+  }
+}
+@media (max-width: 320px) {
+  .profile__add-button {
+    background-size: 6%;
+  }
+}
+.profile__add-button:focus {
+  outline: none;
+}

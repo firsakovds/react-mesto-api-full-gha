@@ -1,0 +1,17 @@
+.auth__component-title {
+  width: 358px;
+height: 29px;
+left: 461px;
+top: 179px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+text-align: center;
+
+color: #FFFFFF;
+}
