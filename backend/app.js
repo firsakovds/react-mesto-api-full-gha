@@ -1,5 +1,7 @@
 const express = require("express");
+
 const mongoose = require("mongoose");
+
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/users");
 const cardRouter = require("./routes/cards");
@@ -8,8 +10,9 @@ const { login, createUsers } = require("./controllers/users");
 const auth = require('./middlewares/auth');
 const { celebrate, Joi, errors } = require('celebrate');
 const UserNotFound = require("./errors/UserNotFound");
+const cors = require("cors");
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 mongoose
   //использовал .connect("mongodb://0.0.0.0:27017/mestodb", с loсalhost не было ответа от сервера
   .connect("mongodb://0.0.0.0:27017/mestodb", {
@@ -19,6 +22,9 @@ mongoose
     console.log("Хьюстон! Мы на связи!");
   });
 const app = express();
+app.use(cors({
+  origin: ['http://localhost:3000' ],
+}));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

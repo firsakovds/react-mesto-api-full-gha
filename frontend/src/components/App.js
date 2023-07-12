@@ -1,6 +1,6 @@
 import "../styles/index.css";
 import React from "react";
-import { Routes, Route, Navigate, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate} from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -40,7 +40,8 @@ function App() {
             setUserEmail(res.data.email);
             setLoggedIn(true);
             navigate("/");
-            //console.log(res.);        
+            console.log(res.data);  
+             
           }
         })
         .catch((err) => {

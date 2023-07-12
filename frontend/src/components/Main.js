@@ -1,6 +1,6 @@
 import React from "react"
 import "../styles/index.css"
-import api from "../utils/Api"
+//import api from "../utils/Api"
 import Card from "./Card"
 import Spinner from "./Spinner"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
@@ -22,7 +22,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {props.isLoading ? <Spinner /> :
-          props.cards.map((card) => (
+          props.cards[0] && props.cards.map((card) => (
             <Card card={card} key={card._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} />
           ))}
       </section>
