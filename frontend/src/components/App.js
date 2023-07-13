@@ -1,6 +1,6 @@
 import "../styles/index.css";
 import React from "react";
-import { Routes, Route, Navigate, useNavigate} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -39,8 +39,8 @@ function App() {
           if (res.data) {
             setUserEmail(res.data.email);
             setLoggedIn(true);
-            navigate("/");           
-             
+            navigate("/");
+
           }
         })
         .catch((err) => {
@@ -84,15 +84,15 @@ function App() {
         console.log(err);
       });
   }
-
-  function handleLogin(loginData) {
-    auth.authorize(loginData)
+  function handleLogin({ email, password }) {
+    auth.authorize({ email, password })
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
-          tokenCheck();          
+          tokenCheck();
           navigate('/');
+          setUserEmail(email)
         }
       })
       .catch((err) => {

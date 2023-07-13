@@ -1,7 +1,7 @@
 export class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-   this._headers = options.headers;
+    this._headers = options.headers;
   }
   //сделаем 1 приватный метод для использования во всем классе
   _checkError(res) {
@@ -16,22 +16,20 @@ export class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: this._headers,
-      //credentials: "include",      
     }).then(this._checkError);
   }
   //2. Загрузка карточек с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      method: 'GET',     
+      method: 'GET',
       headers: this._headers,
-    //credentials: "include"    
     }).then(this._checkError);
   }
   //3. Редактирование профиля
   patchUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,     
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: about
@@ -42,7 +40,7 @@ export class Api {
   postNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,      
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -53,27 +51,27 @@ export class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers     
+      headers: this._headers
     }).then(this._checkError);
   }
   //8. Постановка и снятие лайка
   putLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: this._headers     
+      headers: this._headers
     }).then(this._checkError);
   }
   deleteLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
-     headers: this._headers   
+      headers: this._headers
     }).then(this._checkError);
   }
   //9. Обновление аватара пользователя
   patchAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,      
+      headers: this._headers,
       body: JSON.stringify({
         avatar: avatar
       }),
@@ -91,9 +89,9 @@ export class Api {
 const api = new Api({
   baseUrl: 'http://localhost:3001',
   //baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
-  headers: {    
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        'Content-Type': 'application/json',    
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    'Content-Type': 'application/json',
   },
 });
 export default api

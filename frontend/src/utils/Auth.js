@@ -1,7 +1,7 @@
 export class Auth {
     constructor(options) {
         this._baseUrl = options.baseUrl;
-       // this._headers = options.headers;
+        this._headers = options.headers;
     }
     //сделаем 1 приватный метод для использования во всем классе
     _checkError(res) {
@@ -14,21 +14,16 @@ export class Auth {
     register = (password, email) => {
         return fetch(`${this._baseUrl}/signup`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify(password, email)
         })
             .then(this._checkError)
     };
-    authorize = ({password, email}) => {
+    authorize = ({ password, email }) => {
         return fetch(`${this._baseUrl}/signin`, {
             method: 'POST',
-            headers: {
-                //'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({password, email})
+            headers: this._headers,
+            body: JSON.stringify({ password, email })
         })
             .then(this._checkError)
     };
@@ -47,10 +42,10 @@ export class Auth {
 
 const auth = new Auth({
     baseUrl: 'http://localhost:3001',
-   //baseUrl: 'https://auth.nomoreparties.co',
-    /*headers: {
-
+    //baseUrl: 'https://auth.nomoreparties.co',
+    headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
-    }*/
+    }
 })
 export default auth
