@@ -7,7 +7,7 @@ const HttpForbiddenError = require('../errors/HttpForbiddenError')
 module.exports.getCards = (req, res, next) => {
   return Card.find({})
     .then((card) => {
-      return res.status(200).send({ card });
+      return res.status(200).send(card);
     })
     .catch((err) => {
       next(err)
@@ -20,7 +20,7 @@ module.exports.createCards = (req, res, next) => {
 
   return Card.create({ name, link, owner })
     .then((card) => {
-      return res.status(201).send({ card });
+      return res.status(201).send(card);
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {

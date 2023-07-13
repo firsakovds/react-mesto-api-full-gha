@@ -12,7 +12,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 const UserNotFound = require("./errors/UserNotFound");
 const cors = require("cors");
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 mongoose
   //использовал .connect("mongodb://0.0.0.0:27017/mestodb", с loсalhost не было ответа от сервера
   .connect("mongodb://0.0.0.0:27017/mestodb", {
@@ -22,9 +22,31 @@ mongoose
     console.log("Хьюстон! Мы на связи!");
   });
 const app = express();
-app.use(cors({
-  origin: ['http://localhost:3000' ],
-}));
+
+const allowedCors = [
+  'http://localhost:3000'
+];
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  const requestHeaders = req.headers['access-control-request-headers'];
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
+  }
+  return next();
+});
+
+
+
+
+
+
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

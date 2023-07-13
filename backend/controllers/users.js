@@ -65,7 +65,7 @@ module.exports.login = (req, res, next) => {
 module.exports.getUsers = (req, res, next) => {
   return User.find({})
     .then((user) => {
-      return res.status(200).send({ user });
+      return res.status(200).send(user);
     })
     .catch((err) => {
       next(err)
@@ -103,7 +103,7 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new UserNotFound('Юзер не найден')
       }
-      return res.status(200).send({ user });
+      return res.status(200).send(user);
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
@@ -127,7 +127,7 @@ module.exports.updateAvatar = (req, res, next) => {
         throw new UserNotFound('Юзер не найден')
 
       } else {
-        return res.status(200).send({ user });
+        return res.status(200).send(user);
       }
     })
     .catch((err) => {
