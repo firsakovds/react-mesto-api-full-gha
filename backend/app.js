@@ -12,7 +12,7 @@ const UserNotFound = require("./errors/UserNotFound");
 const cors = require("cors");
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 mongoose
   //использовал .connect("mongodb://0.0.0.0:27017/mestodb", с loсalhost не было ответа от сервера
   .connect("mongodb://0.0.0.0:27017/mestodb", {
@@ -53,7 +53,7 @@ app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-}); 
+});
 //4. Создайте роут для логина и регистрации
 app.post('/signin', celebrate({
   body: Joi.object().keys({
