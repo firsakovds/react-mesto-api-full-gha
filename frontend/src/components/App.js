@@ -49,7 +49,7 @@ function App() {
     }
   }
   React.useEffect(() => {
-    //setIsLoading(true);
+    setIsLoading(true);
     if (isLoggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userData, cardsData]) => {
@@ -60,7 +60,7 @@ function App() {
           console.log(err);
         })
         .finally(() => {
-         // setIsLoading(false);
+          setIsLoading(false);
         });
     }
   }, [isLoggedIn]);
@@ -91,7 +91,7 @@ function App() {
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
-          tokenCheck();
+          tokenCheck();          
           navigate('/');
         }
       })

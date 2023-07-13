@@ -1,5 +1,4 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
@@ -11,6 +10,7 @@ const auth = require('./middlewares/auth');
 const { celebrate, Joi, errors } = require('celebrate');
 const UserNotFound = require("./errors/UserNotFound");
 const cors = require("cors");
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
 const { PORT = 3001 } = process.env;
 mongoose
@@ -29,12 +29,15 @@ const allowedCors = [
 app.use((req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
+  // Значение для заголовка Access-Control-Allow-Methods по умолчанию
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  // разрешаем кросс-доменные запросы с этими заголовками
   const requestHeaders = req.headers['access-control-request-headers'];
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
   if (method === 'OPTIONS') {
+    // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
@@ -42,15 +45,15 @@ app.use((req, res, next) => {
   return next();
 });
 
-
-
-
-
-
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(requestLogger); // подключаем логгер запросов
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+}); 
 //4. Создайте роут для логина и регистрации
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -75,6 +78,9 @@ app.use("*", (req, res, next) => {
    next(new UserNotFound('Такого роута нет'));
    return
 });
+
+app.use(errorLogger); // подключаем логгер ошибок
+
 app.use(errors()); // обработчик ошибок celebrate
 app.use((err, req, res, next) => {
   // если у ошибки нет статуса, выставляем 500
