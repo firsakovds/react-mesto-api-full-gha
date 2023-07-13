@@ -39,8 +39,7 @@ function App() {
           if (res.data) {
             setUserEmail(res.data.email);
             setLoggedIn(true);
-            navigate("/");
-            console.log(res.data);  
+            navigate("/");           
              
           }
         })
@@ -50,7 +49,7 @@ function App() {
     }
   }
   React.useEffect(() => {
-    setIsLoading(true);
+    //setIsLoading(true);
     if (isLoggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userData, cardsData]) => {
@@ -61,7 +60,7 @@ function App() {
           console.log(err);
         })
         .finally(() => {
-          setIsLoading(false);
+         // setIsLoading(false);
         });
     }
   }, [isLoggedIn]);

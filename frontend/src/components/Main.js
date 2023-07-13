@@ -22,7 +22,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {props.isLoading ? <Spinner /> :
-          props.cards[0] && props.cards.map((card) => (
+          props.cards.map((card) => (
             <Card card={card} key={card._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} />
           ))}
       </section>
