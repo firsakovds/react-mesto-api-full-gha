@@ -28,7 +28,7 @@ const app = express();
 
 const allowedCors = [
   'http://localhost:3000',
-  'https://localhost:3000'
+
 ];
 app.use((req, res, next) => {
   const { origin } = req.headers;
