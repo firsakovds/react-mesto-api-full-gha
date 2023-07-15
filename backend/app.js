@@ -12,7 +12,7 @@ const UserNotFound = require("./errors/UserNotFound");
 const cors = require("cors");
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
-const { PORT = 3000,
+const { PORT = 3001,
 MONGO_URL = 'mongodb://127.0.0.1:27017'
 
 } = process.env;
