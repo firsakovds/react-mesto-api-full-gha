@@ -8,7 +8,7 @@ const HttpConflictError = require('../errors/httpConflictError');
 const BadRequestError = require('../errors/BadRequestError');
 const UserNotFound = require('../errors/UserNotFound');
 const UnauthorizedError = require('../errors/UnauthorizedError');
-
+const { NODE_ENV, JWT_SECRET } = process.env;
 //создать юзера 2. Доработайте контроллер createUser
 module.exports.createUsers = (req, res, next) => {
   const { name, about, avatar, email, password } = req.body;
@@ -50,9 +50,13 @@ module.exports.login = (req, res, next) => {
       // аутентификация успешна! пользователь в переменной user
       const token = jwt.sign(
         { _id: user._id },//Пейлоуд токена — зашифрованный в строку объект пользователя.
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }
+      );
+     /* const token = jwt.sign(
+        { _id: user._id },
         'some-secret-key',
         { expiresIn: '7d' } // токен будет просрочен через 7 дней после создания
-      );
+      );*/
       // вернём токен
       res.send({ token });
     })
