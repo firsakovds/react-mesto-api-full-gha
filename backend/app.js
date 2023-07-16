@@ -28,6 +28,7 @@ const app = express();
 app.use(cors());
 const allowedCors = [
   'http://mesto.firsakovds.nomoredomains.xyz',
+  'https://mesto.firsakovds.nomoredomains.xyz',
 ];
 app.use((req, res, next) => {
   const { origin } = req.headers;
