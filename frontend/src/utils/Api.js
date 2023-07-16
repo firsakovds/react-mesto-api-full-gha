@@ -15,14 +15,22 @@ export class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      //headers: this._headers,
+      headers: {    
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,        
+      },
     }).then(this._checkError);
   }
   //2. Загрузка карточек с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      headers: this._headers,
+      //headers: this._headers,
+      headers: {    
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,        
+      },
     }).then(this._checkError);
   }
   //3. Редактирование профиля
@@ -89,10 +97,9 @@ export class Api {
 const api = new Api({
   baseUrl: 'https://api.mesto.firsakovds.nomoredomains.xyz',
   //baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
-  headers: {
-    'Content-Type': 'application/json',
+  headers: {    
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    
+    'Content-Type': 'application/json'
   },
 });
 export default api
