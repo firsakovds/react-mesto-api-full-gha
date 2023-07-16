@@ -28,6 +28,7 @@ const app = express();
 
 const allowedCors = [
   'http://localhost:3001',
+  'http://mesto.firsakovds.nomoredomains.xyz'
 
 ];
 app.use((req, res, next) => {
