@@ -1,5 +1,5 @@
 .popup__InfoTooltip-text {
-  width: 358px;
+  max-width: 358px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
