@@ -41,7 +41,7 @@ export class Auth {
 }
 
 const auth = new Auth({
-    baseUrl: 'http://api.mesto.firsakovds.nomoredomains.xyz',
+    baseUrl: 'https://api.mesto.firsakovds.nomoredomains.xyz',
     //baseUrl: 'https://auth.nomoreparties.co',
     headers: {
         'Accept': 'application/json',

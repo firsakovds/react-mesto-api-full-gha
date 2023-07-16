@@ -87,7 +87,7 @@ export class Api {
   }
 }
 const api = new Api({
-  baseUrl: 'http://api.mesto.firsakovds.nomoredomains.xyz',
+  baseUrl: 'https://api.mesto.firsakovds.nomoredomains.xyz',
   //baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
   headers: {
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
