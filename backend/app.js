@@ -12,7 +12,7 @@ const UserNotFound = require("./errors/UserNotFound");
 const cors = require("cors");
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
-const { PORT = 3001,
+const { PORT = 3000,
 MONGO_URL = 'mongodb://127.0.0.1:27017'
 
 } = process.env;
@@ -28,7 +28,10 @@ const app = express();
 
 const allowedCors = [
   'http://localhost:3001',
-  'http://mesto.firsakovds.nomoredomains.xyz'
+  'http://mesto.firsakovds.nomoredomains.xyz',
+  'https://mesto.firsakovds.nomoredomains.xyz',
+  'http://api.mesto.firsakovds.nomoredomains.xyz',
+  'https://api.mesto.firsakovds.nomoredomains.xyz',
 
 ];
 app.use((req, res, next) => {
