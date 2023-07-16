@@ -9,11 +9,11 @@ const { login, createUsers } = require("./controllers/users");
 const auth = require('./middlewares/auth');
 const { celebrate, Joi, errors } = require('celebrate');
 const UserNotFound = require("./errors/UserNotFound");
-const cors = require("cors");
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
-const { PORT = 3001,
-MONGO_URL = 'mongodb://127.0.0.1:27017'
+const { PORT = 3000,
+MONGO_URL = 'mongodb://localhost:27017'
 
 } = process.env;
 mongoose
@@ -25,15 +25,9 @@ mongoose
     console.log("Хьюстон! Мы на связи!");
   });
 const app = express();
-
+app.use(cors());
 const allowedCors = [
-  'http://localhost:3001',
   'http://mesto.firsakovds.nomoredomains.xyz',
-  'https://mesto.firsakovds.nomoredomains.xyz',
-  'http://api.mesto.firsakovds.nomoredomains.xyz',
-  'https://api.mesto.firsakovds.nomoredomains.xyz',
-  'https://localhost:3001',
-  'http://localhost:3001',
 ];
 app.use((req, res, next) => {
   const { origin } = req.headers;
