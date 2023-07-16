@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.28.59
+IP <158.160.28.59> 
 
 Frontend https://mesto.firsakovds.nomoredomains.xyz
 
