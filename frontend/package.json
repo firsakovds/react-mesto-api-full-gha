@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "react-mesto-full-api",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://firsakovds.github.io/",
+  "homepage": "http://mesto.firsakovds.nomoredomains.xyz/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
