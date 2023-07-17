@@ -1,7 +1,6 @@
 export class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-    //this._headers = options.headers;
   }
   //сделаем 1 приватный метод для использования во всем классе
   _checkError(res) {
@@ -15,7 +14,6 @@ export class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      //headers: this._headers,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -26,7 +24,6 @@ export class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      //headers: this._headers,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -37,7 +34,6 @@ export class Api {
   patchUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      //headers: this._headers,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -52,7 +48,6 @@ export class Api {
   postNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      //headers: this._headers,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -67,7 +62,6 @@ export class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      //headers: this._headers
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -78,7 +72,6 @@ export class Api {
   putLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
-      //headers: this._headers
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -88,10 +81,9 @@ export class Api {
   deleteLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
-      //headers: this._headers
-      headers: {    
+      headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,        
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     }).then(this._checkError);
   }
@@ -99,7 +91,6 @@ export class Api {
   patchAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      //headers: this._headers,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -120,10 +111,5 @@ export class Api {
 }
 const api = new Api({
   baseUrl: 'https://api.mesto.firsakovds.nomoredomains.xyz',
-  //baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    'Content-Type': 'application/json'
-  },
 });
 export default api

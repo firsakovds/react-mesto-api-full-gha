@@ -9,3 +9,9 @@
   color: #000000;
   margin-bottom: 60px;
 }
+
+@media (max-width: 905px) {
+  .popup__InfoTooltip-text {
+    font-size: 22px;
+  }
+}

@@ -31,23 +31,22 @@ function App() {
   const [infoTooltipImage, setInfoTooltipImage] = React.useState(null);
   const [text, setText] = React.useState('');
   const navigate = useNavigate();
-  function tokenCheck() {
+
+  React.useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
       auth.checkToken(token)
         .then((res) => {
-          if (res.data) {
-            setUserEmail(res.data.email);
-            setLoggedIn(true);
-            navigate("/");
-
-          }
+          setUserEmail(res.email);
+          setLoggedIn(true);
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);;
         })
     }
-  }
+  }, [navigate]);
+
   React.useEffect(() => {
     setIsLoading(true);
     if (isLoggedIn) {
@@ -65,10 +64,6 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  React.useEffect(() => {
-    tokenCheck()
-  }, []);
-
   function handleRegister(registerData) {
     auth.register(registerData)
       .then(() => {
@@ -84,13 +79,13 @@ function App() {
         console.log(err);
       });
   }
+  
   function handleLogin({ email, password }) {
     auth.authorize({ email, password })
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
-          tokenCheck();
           navigate('/');
           setUserEmail(email)
         }
