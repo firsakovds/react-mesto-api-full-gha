@@ -52,11 +52,6 @@ module.exports.login = (req, res, next) => {
         { _id: user._id },//Пейлоуд токена — зашифрованный в строку объект пользователя.
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }
       );
-     /* const token = jwt.sign(
-        { _id: user._id },
-        'some-secret-key',
-        { expiresIn: '7d' } // токен будет просрочен через 7 дней после создания
-      );*/
       // вернём токен
       res.send({ token });
     })

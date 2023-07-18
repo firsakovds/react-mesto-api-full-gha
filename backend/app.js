@@ -14,7 +14,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
 const { PORT = 3000,
 MONGO_URL = 'mongodb://localhost:27017'
-
 } = process.env;
 mongoose
   //использовал .connect("mongodb://0.0.0.0:27017/mestodb", с loсalhost не было ответа от сервера
@@ -84,7 +83,6 @@ app.use("*", (req, res, next) => {
 });
 
 app.use(errorLogger); // подключаем логгер ошибок
-
 app.use(errors()); // обработчик ошибок celebrate
 app.use((err, req, res, next) => {
   // если у ошибки нет статуса, выставляем 500
